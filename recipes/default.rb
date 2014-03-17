@@ -13,6 +13,9 @@ include_recipe 'java'
 #include_recipe 'apache2::mod_proxy'
 #include_recipe 'apache2::mod_ssl'
 include_recipe 'labrea'
+if node[:jira][:newrelic][:enabled]
+  include_recipe 'newrelic::java-agent'
+end
 
 jira_base_dir = File.join(node[:jira][:install_path],node[:jira][:base_name])
 
