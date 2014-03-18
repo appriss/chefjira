@@ -84,7 +84,9 @@ wrapper.java.additional.13=-Dorg.dom4j.factory=com.atlassian.core.xml.InterningD
 wrapper.java.additional.14=-XX:+PrintGCDateStamps
 wrapper.java.additional.15=-XX:-OmitStackTraceInFastThrow
 wrapper.java.additional.16=-Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
-
+<% if node[:jira][:timezone] %>
+wrapper.java.additional.17=-Duser.timezone=<%= node[:jira][:timezone] %>
+<% end %>
 
 # Initial Java Heap Size (in MB)
 wrapper.java.initmemory=<%= node[:jira][:min_mem] %> 
