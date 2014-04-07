@@ -30,6 +30,7 @@ default[:jira][:run_as]          = "jira"
 default[:jira][:min_mem]	    = 384
 default[:jira][:max_mem]	    = 768
 default[:jira][:ssl]		    = true
+default[:jira][:timezone]		= nil
 default[:jira][:database][:type]   = "mysql"
 default[:jira][:database][:host]     = "localhost"
 default[:jira][:database][:user]     = "jira"
