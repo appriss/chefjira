@@ -94,6 +94,13 @@ end
 #Install NewRelic if configured
 if node[:jira][:newrelic][:enabled]
   include_recipe 'newrelic::java-agent'
+  #We need to explictly disable JSP autoinstrument
+  newrelic_conf = File.join(jira_base_dir, 'newrelic', 'newrelic.yml')
+  ruby_block "disable autoinstrument for JSP pages." do 
+    f = Chef::Util::FileEdit.new(newrelic_conf)
+    f.search_file_replace(/auto_instrument: true/,'auto_instrument: false')
+    f.write_file
+  end
 end
 
 # Create wrapper startup script
