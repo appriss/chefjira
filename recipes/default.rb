@@ -97,9 +97,11 @@ if node[:jira][:newrelic][:enabled]
   #We need to explictly disable JSP autoinstrument
   newrelic_conf = File.join(jira_base_dir, 'newrelic', 'newrelic.yml')
   ruby_block "disable autoinstrument for JSP pages." do 
-    f = Chef::Util::FileEdit.new(newrelic_conf)
-    f.search_file_replace(/auto_instrument: true/,'auto_instrument: false')
-    f.write_file
+    block do
+      f = Chef::Util::FileEdit.new(newrelic_conf)
+      f.search_file_replace(/auto_instrument: true/,'auto_instrument: false')
+      f.write_file
+    end
   end
 end
 
