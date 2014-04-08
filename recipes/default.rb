@@ -13,9 +13,7 @@ include_recipe 'java'
 #include_recipe 'apache2::mod_proxy'
 #include_recipe 'apache2::mod_ssl'
 include_recipe 'labrea'
-if node[:jira][:newrelic][:enabled]
-  include_recipe 'newrelic::java-agent'
-end
+
 
 jira_base_dir = File.join(node[:jira][:install_path],node[:jira][:base_name])
 
@@ -89,6 +87,11 @@ template File.join(wrapper_home,"conf","wrapper.conf") do
     :wrapper_home => wrapper_home,
     :jira_base_dir => jira_base_dir
   })
+end
+
+#Install NewRelic if configured
+if node[:jira][:newrelic][:enabled]
+  include_recipe 'newrelic::java-agent'
 end
 
 # Create wrapper startup script
