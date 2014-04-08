@@ -52,11 +52,11 @@ default[:jira][:newrelic][:app_name] = node['hostname']
 # Confluence doesn't support OpenJDK http://jira.atlassian.com/browse/CONF-16431
 # FIXME: There are some hardcoded paths like JAVA_HOME
 set[:java][:install_flavor]    = "oracle"
-normal[:newrelic][:install_dir]   = ::File.join(node[:jira][:install_path],"newrelic")
-normal[:newrelic][:app_user] = node[:jira][:run_as]
-normal[:newrelic][:app_group] = node[:jira][:run_as]
-normal[:newrelic][:https_download] = "https://download.newrelic.com/newrelic/java-agent/newrelic-agent/#{node[:jira][:newrelic][:version]}/newrelic-agent-#{node[:jira][:newrelic][:version]}.jar"
-normal[:newrelic][:jar_file] = "newrelic-agent-#{node[:jira][:newrelic][:version]}.jar"
+normal[:newrelic][:'java-agent'][:install_dir]   = ::File.join(node[:jira][:install_path],"newrelic")
+normal[:newrelic][:'java-agent'][:app_user] = node[:jira][:run_as]
+normal[:newrelic][:'java-agent'][:app_group] = node[:jira][:run_as]
+normal[:newrelic][:'java-agent'][:https_download] = "https://download.newrelic.com/newrelic/java-agent/newrelic-agent/#{node[:jira][:newrelic][:version]}/newrelic-agent-#{node[:jira][:newrelic][:version]}.jar"
+normal[:newrelic][:'java-agent'][:jar_file] = "newrelic-agent-#{node[:jira][:newrelic][:version]}.jar"
 normal[:newrelic][:application_monitoring][:logfile] = ::File.join(node[:jira][:home], "log", "newrelic.log")
 normal[:newrelic][:application_monitoring][:appname] = node[:jira][:newrelic][:app_name]
 
