@@ -78,6 +78,8 @@ execute "configure wrapper permissions" do
   action :nothing
 end
 
+newrelic_jar = File.join(jira_base_dir, 'newrelic.jar')
+
 # Configure wrapper
 template File.join(wrapper_home,"conf","wrapper.conf") do
   owner node[:jira][:run_as]
@@ -86,7 +88,7 @@ template File.join(wrapper_home,"conf","wrapper.conf") do
   variables({
     :wrapper_home => wrapper_home,
     :jira_base_dir => jira_base_dir
-    :newrelic_jar => ::File.join(jira_base_dir, 'newrelic.jar')
+    :newrelic_jar => newrelic_jar
   })
 end
 
