@@ -88,7 +88,7 @@ wrapper.java.additional.16=-Djava.util.logging.manager=org.apache.juli.ClassLoad
 wrapper.java.additional.17=-Duser.timezone=<%= node[:jira][:timezone] %>
 <% end %>
 <% if node[:jira][:newrelic][:enabled] %>
-wrapper.java.additional.18=-javaagent:<%= File.join(normal[:newrelic][:'java-agent'][:install_dir],"newrelic.jar") %>
+wrapper.java.additional.18=-javaagent:<%= @newrelic_jar %>
 <% end %>
 
 # Initial Java Heap Size (in MB)
