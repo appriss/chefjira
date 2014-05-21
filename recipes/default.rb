@@ -42,7 +42,7 @@ end
 
 # Set the permissions of the Atlassian Jira directory
 execute "configure jira permissions" do
-  command "chown -R #{node[:jira][:run_as]} #{node[:jira][:install_path]}"
+  command "chown -R #{node[:jira][:run_as]} #{node[:jira][:install_path]} #{node[:jira][:home]}"
   action :nothing
 end
 
